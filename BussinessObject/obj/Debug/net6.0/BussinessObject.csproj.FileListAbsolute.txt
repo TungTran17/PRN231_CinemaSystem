@@ -1,0 +1,14 @@
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\bin\Debug\net6.0\BussinessObject.deps.json
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\bin\Debug\net6.0\BussinessObject.runtimeconfig.json
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\bin\Debug\net6.0\BussinessObject.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\bin\Debug\net6.0\BussinessObject.pdb
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.csproj.AssemblyReference.cache
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.AssemblyInfoInputs.cache
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.AssemblyInfo.cs
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.csproj.CoreCompileInputs.cache
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\refint\BussinessObject.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.pdb
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.genruntimeconfig.cache
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\ref\BussinessObject.dll
