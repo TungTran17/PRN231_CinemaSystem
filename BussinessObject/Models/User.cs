@@ -10,6 +10,13 @@ namespace BussinessObject.Models
             Tickets = new HashSet<Ticket>();
         }
 
+        public enum Roles
+        {
+            User,
+            Staff,
+            Admin
+        }
+
         public int Id { get; set; }
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;

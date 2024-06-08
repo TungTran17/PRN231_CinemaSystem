@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaSystemWebClient", "CinemaSystemWebClient\CinemaSystemWebClient.csproj", "{809B0053-B0F3-4217-928D-4883EE0FA43D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaSystemManagermentAPI", "CinemaSystemManagermentAPI\CinemaSystemManagermentAPI.csproj", "{7AADDB94-1279-4822-85CD-7BD341D98ED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaSystemManagermentAPI", "CinemaSystemManagermentAPI\CinemaSystemManagermentAPI.csproj", "{7AADDB94-1279-4822-85CD-7BD341D98ED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +47,7 @@ Global
 		{1E8205B1-CF7C-4C26-AD36-1B709EDA7CB8} = {9CD7D43D-4608-4A0D-8FD6-5647EA9E6B93}
 		{7BAB3B7A-841F-4025-A3A2-8F67E42492EA} = {93C10EEF-2A19-456F-8037-B3AD0D8AD39B}
 		{809B0053-B0F3-4217-928D-4883EE0FA43D} = {24B045B3-48DE-4987-8E6D-36784C04A9E4}
+		{7AADDB94-1279-4822-85CD-7BD341D98ED4} = {24B045B3-48DE-4987-8E6D-36784C04A9E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D1DB657-A2E2-4EB3-8C32-BA0B66E1D90E}

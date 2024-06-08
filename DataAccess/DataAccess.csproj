@@ -5,12 +5,6 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Folder Include="Dao\" />
-		<Folder Include="Utils\" />
-		<Folder Include="Repositories\impl\" />
-	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />

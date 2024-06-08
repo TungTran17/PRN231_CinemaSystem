@@ -7,9 +7,9 @@ D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\Bussine
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.AssemblyInfoInputs.cache
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.AssemblyInfo.cs
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.csproj.CoreCompileInputs.cache
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.sourcelink.json
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\refint\BussinessObject.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.pdb
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.genruntimeconfig.cache
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\ref\BussinessObject.dll
-D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\BussinessObject\obj\Debug\net6.0\BussinessObject.sourcelink.json

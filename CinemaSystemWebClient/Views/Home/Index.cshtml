@@ -1,8 +1,26 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using BussinessObject.Models
+@{
+    ViewData["Title"] = "CinemaSystem";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hanime-body__cards  container-fluid">
+    <div class="row">
+        @if (ViewBag.Films != null)
+        {
+            @foreach (Film film in ViewBag.Films)
+            {
+                <a asp-controller="Film" asp-action="Index" asp-route-id="@film.Id" class="hanime-body__card-item col-xl-2 col-md-3 col-sm-6 col-xs-12">
+                    <img class="hanime-body__card-item--thumbnail" style="object-position: center; object-fit: cover;" height="200" src="@film.ImageUrl">
+                    <div class="hanime-body__card-item--body">
+                        <p class="hanime-body__card-item--body--title">@film.Name</p>
+                        <p class="hanime-body__card-item--body--sub">@film.ReleaseDate</p>
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <p>No films available.</p>
+        }
+    </div>
 </div>
