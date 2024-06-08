@@ -1,4 +1,4 @@
-﻿namespace CinemaSystemWebapp.Utils
+﻿namespace DataAccess.Utils
 {
     public static class GRecaptcha
     {

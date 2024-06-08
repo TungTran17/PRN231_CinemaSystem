@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Security.Cryptography;
+﻿using DataAccess.Utils;
+using Newtonsoft.Json;
 
-namespace CinemaSystemWebapp.Utils
+namespace DataAccess.Utils
 {
     public static class TokenUtils
     {

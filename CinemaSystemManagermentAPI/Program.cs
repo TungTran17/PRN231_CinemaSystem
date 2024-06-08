@@ -2,6 +2,7 @@ using BussinessObject.Models;
 using DataAccess.Repositories.impl;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Dao;
 
 namespace CinemaSystemManagermentAPI
 {
@@ -12,12 +13,6 @@ namespace CinemaSystemManagermentAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-
-            builder.Services.AddScoped<IFilmRepository, FilmRepository>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
-            
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

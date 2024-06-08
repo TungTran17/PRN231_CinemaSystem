@@ -1,7 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using DataAccess.Utils;
 
-namespace CinemaSystemWebapp.Utils
+namespace DataAccess.Utils
 {
     public static class UploadFile
     {

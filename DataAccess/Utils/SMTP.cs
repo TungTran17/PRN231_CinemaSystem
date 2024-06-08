@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace CinemaSystemWebapp.Utils
+namespace DataAccess.Utils
 {
     public class SMTP
     {

@@ -10,9 +10,7 @@ namespace DataAccess.Repositories.impl
         public Film findById(int filmId) => FilmDao.GetFilmDao.findById(filmId);
         public List<Film> GetFilms() => FilmDao.GetFilmDao.getFilm();
         public Film getFilmWithCategoriesShowsRoom(int filmId) => FilmDao.GetFilmDao.getFilmWithCategoriesShowsRoom(filmId);
-        public List<Film> SearchFilm(string q)
-        {
-            return FilmDao.GetFilmDao.searchFilm(q);
-        }
+        public List<Film> SearchFilm(string q) => FilmDao.GetFilmDao.searchFilm(q);
+
     }
 }

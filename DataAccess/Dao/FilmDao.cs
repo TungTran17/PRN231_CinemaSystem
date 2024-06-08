@@ -23,7 +23,7 @@ namespace DataAccess.Dao
             }
         }
 
-        internal List<Film> getFilms()
+        public List<Film> getFilms()
         {
             var films = new List<Film>();
             try
@@ -39,7 +39,7 @@ namespace DataAccess.Dao
             return films;
         }
 
-        internal List<Film> searchFilm(string q)
+        public List<Film> searchFilm(string q)
         {
             var films = new List<Film>();
 

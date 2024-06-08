@@ -1,8 +1,7 @@
-﻿using System.IO;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace CinemaSystemWebapp.Utils
+namespace DataAccess.Utils
 {
     public static class Crypto
     {

@@ -1,5 +1,4 @@
 ﻿using BussinessObject.Models;
-using CinemaSystemWebapp.Utils;
 using DataAccess.Utils;
 
 namespace DataAccess.Dao

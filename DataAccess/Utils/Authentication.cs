@@ -4,7 +4,7 @@ using DataAccess.Repositories.impl;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace CinemaSystemWebapp.Utils
+namespace DataAccess.Utils
 {
     public static class Authentication
     {
@@ -64,7 +64,7 @@ namespace CinemaSystemWebapp.Utils
 
         public static string? CreateToken(string email, TimeSpan expireIn)
         {
-            
+
             using CinemaSystemContext dbcontext = new CinemaSystemContext();
             User? user = userRepository.FindByEmail(email);
 

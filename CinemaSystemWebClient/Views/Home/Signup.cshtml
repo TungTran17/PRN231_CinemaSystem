@@ -1,0 +1,88 @@
+﻿@using DataAccess.Utils
+@{
+    ViewData["Title"] = "Signup";
+}
+
+<div class="hanime-responsive-form">
+    <div class="container">
+        <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                        <form class="mx-1 mx-md-4" id="hanime-signup-form" method="post"
+                              asp-controller="Home"
+                              asp-action="Signup"
+                              oninput="repassword.setCustomValidity(repassword.value !== password.value ? 'Confirm password does not match': '')">
+
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="email" id="email" class="form-control" name="email" required />
+                                    <label class="form-label" for="email">Your Email</label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="password" id="password" class="form-control" name="password"
+                                           required pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z0-9]{6,}$" />
+                                    <label class="form-label" for="password">Password</label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="password" id="repassword" class="form-control" required
+                                           pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z0-9]{6,}$" />
+                                    <label class="form-label" for="repassword">
+                                        Repeat your
+                                        password
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="button" class="btn btn-primary btn-lg"
+                                        onclick="formSubmit()">
+                                    Register
+                                </button>
+
+                                <div class="g-recaptcha" data-sitekey="@GRecaptcha.SITE_KEY"
+                                     data-size="invisible" data-callback="onSubmit"></div>
+                            </div>
+
+                        </form>
+
+                        <span class="d-flex justify-content-center">
+                            <span class="me-1">Already have an account?</span>
+                            <a asp-action="Signin" asp-controller="">Sign in</a>
+                        </span>
+                    </div>
+                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                        <img src="/assets/default.jpg" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function onSubmit() {
+        document.getElementById('hanime-signup-form').submit();
+    }
+
+    function formSubmit() {
+        const form = document.getElementById('hanime-signup-form');
+        if (form.checkValidity()) {
+            grecaptcha.execute();
+        } else {
+            form.reportValidity();
+        }
+    }
+</script>

@@ -5,24 +5,8 @@
       "PackagePath": "staticwebassets\\CinemaSystemWebClient.bundle.scp.css"
     },
     {
-      "Id": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\_0_d41d8cd98f00b204e9800998ecf8427e.JPG",
-      "PackagePath": "staticwebassets\\assets\\_0_d41d8cd98f00b204e9800998ecf8427e.JPG"
-    },
-    {
-      "Id": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\_0_d41d8cd98f00b204e9800998ecf8427e.png",
-      "PackagePath": "staticwebassets\\assets\\_0_d41d8cd98f00b204e9800998ecf8427e.png"
-    },
-    {
-      "Id": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\_1_d41d8cd98f00b204e9800998ecf8427e.png",
-      "PackagePath": "staticwebassets\\assets\\_1_d41d8cd98f00b204e9800998ecf8427e.png"
-    },
-    {
-      "Id": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\_2_d41d8cd98f00b204e9800998ecf8427e.png",
-      "PackagePath": "staticwebassets\\assets\\_2_d41d8cd98f00b204e9800998ecf8427e.png"
-    },
-    {
-      "Id": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\_3_d41d8cd98f00b204e9800998ecf8427e.png",
-      "PackagePath": "staticwebassets\\assets\\_3_d41d8cd98f00b204e9800998ecf8427e.png"
+      "Id": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\default.jpg",
+      "PackagePath": "staticwebassets\\assets\\default.jpg"
     },
     {
       "Id": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\favicon.png",

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccess.Utils
+﻿namespace DataAccess.Utils
 {
     public static class StringUtils
     {
@@ -13,7 +7,6 @@ namespace DataAccess.Utils
             string regexPattern = "^(?=.*[A-Z])(?=.*\\d)[A-Za-z0-9]{6,}$";
             return System.Text.RegularExpressions.Regex.IsMatch(password, regexPattern);
         }
-
 
     }
 }

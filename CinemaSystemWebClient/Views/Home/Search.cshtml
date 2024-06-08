@@ -1,0 +1,47 @@
+﻿@using BussinessObject.Models
+@{
+    ViewData["Title"] = "Search Films";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        @if (ViewBag.Films.Count == 0)
+        {
+            <div class="text-white-50">
+                Your search - <span class="text-danger">@Context.Request.Query["q"]</span> - did not match any documents.
+                <br>
+                <br>
+                Suggestions:
+                <br>
+                <ul>
+                    <li>Make sure that all words are spelled correctly.</li>
+                    <li>Try different keywords.</li>
+                    <li>Try more general keywords.</li>
+                    <li>Try fewer keywords.</li>
+                </ul>
+            </div>
+        }
+
+        @foreach (Film film in ViewBag.Films)
+        {
+            <a class="btn btn-sm p-0 m-2 w-100" asp-controller="Film" asp-action="Index" asp-route-id="@film.Id">
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-3">
+                        <img class="img-fluid" style="object-fit: cover; object-position: center;"
+                             src="@film.ImageUrl"
+                             alt="">
+                    </div>
+
+                    <div class="col-12 col-sm-8 col-md-9 mb-2 d-flex flex-column justify-content-center">
+                        <h6 class="text-truncate text-white m-0 mt-2">
+                            @film.Name
+                        </h6>
+
+                        <strong class="mt-2">@film.ReleaseDate</strong>
+                    </div>
+                </div>
+            </a>
+        }
+
+    </div>
+</div>

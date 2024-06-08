@@ -1,6 +1,7 @@
 ﻿using BussinessObject.Models;
-using CinemaSystemWebapp.Utils;
 using DataAccess.Repositories;
+using DataAccess.Repositories.impl;
+using DataAccess.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaSystemManagermentAPI.Controllers
@@ -9,38 +10,32 @@ namespace CinemaSystemManagermentAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        private readonly IFilmRepository filmRepository;
-        private readonly IUserRepository userRepository;
-
-        public HomeController(IFilmRepository filmRepository, IUserRepository userRepository)
-        {
-            this.filmRepository = filmRepository;
-            this.userRepository = userRepository;
-        }
+        private readonly IFilmRepository _filmRepository = new FilmRepository();
+        private readonly IUserRepository _userRepository = new UserRepository();
 
         [HttpGet("films")]
         public ActionResult<List<Film>> GetFilms()
         {
-            return filmRepository.GetFilms();
+            return _filmRepository.GetFilms();
         }
 
         [HttpGet("search")]
         public ActionResult<List<Film>> Search([FromQuery] string q)
         {
             q = q?.ToLower() ?? "";
-            return filmRepository.SearchFilm(q);
+            return _filmRepository.SearchFilm(q);
         }
 
         [HttpPost("signin")]
-        public ActionResult Signin([FromForm] string email, [FromForm] string password)
+        public IActionResult Signin([FromForm] string email, [FromForm] string password)
         {
             string? token = Authentication.CreateToken(email, password, TimeSpan.FromDays(1));
             if (token is null)
             {
-                return Unauthorized();
+                return RedirectToAction(nameof(Signin));
             }
             Response.Cookies.Append("token", token);
-            return Ok();
+            return Ok(token);
         }
 
         [HttpPost("signup")]
@@ -60,7 +55,7 @@ namespace CinemaSystemManagermentAPI.Controllers
             };
             try
             {
-                userRepository.Signup(user);
+                _userRepository.Signup(user);
             }
             catch (Exception ex)
             {
@@ -77,7 +72,7 @@ namespace CinemaSystemManagermentAPI.Controllers
                 return BadRequest("Recaptcha verification failed.");
             }
 
-            if (userRepository.FindByEmail(email) is null)
+            if (_userRepository.FindByEmail(email) is null)
             {
                 return BadRequest("Email not found.");
             }
@@ -112,7 +107,7 @@ namespace CinemaSystemManagermentAPI.Controllers
             }
             try
             {
-                userRepository.ResetPassword(password, confirmPassword, user);
+                _userRepository.ResetPassword(password, confirmPassword, user);
             }
             catch (Exception ex)
             {
@@ -121,7 +116,7 @@ namespace CinemaSystemManagermentAPI.Controllers
             return Ok();
         }
 
-        [HttpPost("signout")]
+        [HttpGet("signout")]
         public ActionResult Signout()
         {
             Response.Cookies.Delete("token");

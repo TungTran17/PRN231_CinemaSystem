@@ -1,7 +1,8 @@
 ﻿@using BussinessObject.Models
+@using DataAccess.Utils
 @{
     using CinemaSystemContext dbcontext = new();
-    ViewBag.User = CinemaSystemWebapp.Utils.Authentication.GetUserByCookies(Context.Request.Cookies);
+    ViewBag.User = Authentication.GetUserByCookies(Context.Request.Cookies);
     ViewBag.Categories = dbcontext.Categories.ToList();
 }
 
@@ -55,7 +56,7 @@
             </a>
         </div>
 
-        <form class="hanime-header__search-bar" asp-action="Search" asp-controller="Home" method="get">
+        <form class="hanime-header__search-bar" action="Home/Search" method="get">
             <input type="text" name="q" value="@ViewBag.SearchQueryString" class="hanime-header__search-bar--input" placeholder="Search" />
             <button type="submit" class="hanime-header__search-bar--button">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -87,10 +88,11 @@
 
                         <hr class="dropdown-divider" />
 
-                        <a asp-controller="Home" asp-action="Signout" class="dropdown-item rounded">
+                        <a href="/Home/Signout" class="dropdown-item rounded">
                             <i class="fa-solid fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </a>
+
                     </div>
                 </div>
             }
@@ -164,18 +166,18 @@
 
             @if (ViewBag.User is null)
             {
-                <a asp-controller="Home" asp-action="Signin" class="hanime-nav-bar__link">
+                <a asp-controller="" asp-action="Signin" class="hanime-nav-bar__link">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <span>Login</span>
                 </a>
-                <a asp-controller="Home" asp-action="Signup" class="hanime-nav-bar__link">
+                <a asp-controller="" asp-action="Signup" class="hanime-nav-bar__link">
                     <i class="fa-solid fa-user-plus"></i>
                     <span>Register</span>
                 </a>
             }
             else
             {
-                <a asp-controller="Home" asp-action="Signout" class="hanime-nav-bar__link">
+                <a asp-controller="" asp-action="Signout" class="hanime-nav-bar__link">
                     <i class="fa-solid fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
