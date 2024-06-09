@@ -43,26 +43,39 @@ namespace CinemaSystemManagermentAPI.Controllers
         {
             if (!GRecaptcha.Verify(gRecaptchaResponse))
             {
-                return BadRequest("Recaptcha verification failed.");
+                return RedirectToAction(nameof(Signup));
             }
             User user = new()
             {
                 Email = email,
                 Password = password,
                 Name = email,
-                Role = ((int)BussinessObject.Models.User.Roles.User),
+                Role = (int)BussinessObject.Models.User.Roles.User,
                 AvatarUrl = "/assets/default.jpg"
             };
             try
             {
                 _userRepository.Signup(user);
+                return Ok();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message); 
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message); 
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                return BadRequest("Signup failed.");
+                return BadRequest("Signup failed: " + ex.Message); // General error message
             }
-            return Ok();
         }
+
 
         [HttpPost("forgot-password")]
         public ActionResult ForgotPassword([FromForm] string email, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse)
@@ -81,9 +94,10 @@ namespace CinemaSystemManagermentAPI.Controllers
             {
                 return BadRequest("Token creation failed.");
             }
-            string generatedLink = $"{Request.Host}/Home/ResetPassword?token={token}";
-            SMTP.Instance.Send("Reset Password", $"Here is your reset password link: {generatedLink}", email);
+            var resetPasswordUrl = $"{Request.Scheme}://{Request.Host}/Home/ResetPassword?token={token}";
+            SMTP.Instance.Send("Reset Password", $"Here is your reset password link: {resetPasswordUrl}", email);
             return Ok();
+
         }
 
         [HttpGet("reset-password")]
@@ -92,9 +106,9 @@ namespace CinemaSystemManagermentAPI.Controllers
             var user = Authentication.GetUserByToken(token);
             if (user is null)
             {
-                return Unauthorized();
+                return RedirectToAction(nameof(Signout));
             }
-            return Ok(); // Return something indicating the user can reset the password.
+            return Ok();
         }
 
         [HttpPost("reset-password")]
@@ -103,7 +117,7 @@ namespace CinemaSystemManagermentAPI.Controllers
             var user = Authentication.GetUserByToken(token);
             if (user is null)
             {
-                return Unauthorized();
+                return RedirectToAction(nameof(Signout));
             }
             try
             {
@@ -111,7 +125,7 @@ namespace CinemaSystemManagermentAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Password reset failed.");
+                return RedirectToAction(nameof(ResetPassword), new { token = token });
             }
             return Ok();
         }
@@ -123,10 +137,5 @@ namespace CinemaSystemManagermentAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("privacy")]
-        public ActionResult<string> Privacy()
-        {
-            return "Privacy Policy";
-        }
     }
 }

@@ -10,11 +10,15 @@
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
+                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up</p>
+                        @if (ViewBag.ErrorMessage != null)
+                        {
+                            <div class="alert alert-danger">
+                                @ViewBag.ErrorMessage
+                            </div>
+                        }
                         <form class="mx-1 mx-md-4" id="hanime-signup-form" method="post"
-                              asp-controller="Home"
-                              asp-action="Signup"
+                              action="/Home/Signup"
                               oninput="repassword.setCustomValidity(repassword.value !== password.value ? 'Confirm password does not match': '')">
 
                             <div class="d-flex flex-row align-items-center mb-4">
