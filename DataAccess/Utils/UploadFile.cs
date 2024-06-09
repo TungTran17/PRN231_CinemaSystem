@@ -1,6 +1,4 @@
-﻿using DataAccess.Utils;
-
-namespace DataAccess.Utils
+﻿namespace DataAccess.Utils
 {
     public static class UploadFile
     {

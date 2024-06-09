@@ -43,7 +43,7 @@ namespace DataAccess.Dao
             dbcontext.SaveChanges();
         }
 
-        internal void AddToCard(User user, double money)
+        public void AddToCard(User user, double money)
         {
             using CinemaSystemContext dbcontext = new();
             user.Balance += money;
@@ -51,7 +51,7 @@ namespace DataAccess.Dao
             dbcontext.SaveChanges();
         }
 
-        internal void changePassword(User user, string newPassword, string confirmPassword, string oldPassword)
+        public void changePassword(User user, string newPassword, string confirmPassword, string oldPassword)
         {
 
             if (!user.Password.Equals(Crypto.SHA256(oldPassword)))
@@ -66,19 +66,19 @@ namespace DataAccess.Dao
             dbcontext.SaveChanges();
         }
 
-        internal User? findByEmail(string email)
+        public User? findByEmail(string email)
         {
             using var dbcontext = new CinemaSystemContext();
             return dbcontext.Users.FirstOrDefault(u => u.Email == email);
         }
 
-        internal User? Login(string email, string password)
+        public User? Login(string email, string password)
         {
             using var dbcontext = new CinemaSystemContext();
             return dbcontext.Users.FirstOrDefault(u => u.Email == email && u.Password == Crypto.SHA256(password));
         }
 
-        internal void ResetPassword(string password, string confirmPassword, User u)
+        public void ResetPassword(string password, string confirmPassword, User u)
         {
             checkPassword(password, confirmPassword, u.Password);
             u.Password = Crypto.SHA256(password);
@@ -88,7 +88,7 @@ namespace DataAccess.Dao
 
         }
 
-        internal void Signup(User user)
+        public void Signup(User user)
         {
             if (user is null)
             {

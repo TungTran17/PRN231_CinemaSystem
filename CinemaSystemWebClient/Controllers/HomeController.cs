@@ -1,7 +1,6 @@
 ﻿using BussinessObject.Models;
-using DataAccess.Utils;
+using DataAccess.OData;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace CinemaSystemWebClient.Controllers
 {
@@ -17,9 +16,9 @@ namespace CinemaSystemWebClient.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var films = await _httpClient.GetFromJsonAsync<List<Film>>("https://localhost:7041/api/Home/films");
-            ViewBag.Films = films;
-            return View(films);
+            var films = await _httpClient.GetFromJsonAsync<ODataResponseList<Film>>("https://localhost:7041/odata/Home");
+            ViewBag.Films = films.Value;
+            return View(films.Value);
         }
 
         public async Task<IActionResult> Search(string q)
@@ -72,7 +71,6 @@ namespace CinemaSystemWebClient.Controllers
         public async Task<IActionResult> Signup(string email, string password, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse)
         {
             // Kiểm tra thời gian chờ: Đảm bảo rằng yêu cầu được gửi trong khoảng thời gian quy định
-            // Ví dụ: Nếu thời gian kể từ khi trang tải lên là quá lâu, từ chối yêu cầu
             if (Request.Form.Keys.Any(k => k.Equals("g-recaptcha-response")) && !Request.Form["g-recaptcha-response"].Equals(gRecaptchaResponse))
             {
                 return BadRequest("Recaptcha verification failed: Timeout.");
@@ -120,7 +118,6 @@ namespace CinemaSystemWebClient.Controllers
             }
         }
 
-
         public async Task<IActionResult> Signout()
         {
             var response = await _httpClient.GetAsync("https://localhost:7041/api/Home/signout");
@@ -160,6 +157,7 @@ namespace CinemaSystemWebClient.Controllers
             var formData = new Dictionary<string, string>
             {
                 { "email", email },
+                {"client-host", Request.Host.ToString()},
                 { "g-recaptcha-response", gRecaptchaResponse }
             };
 
@@ -205,19 +203,16 @@ namespace CinemaSystemWebClient.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // Password đã được đặt lại thành công
                     return View("Signin");
                 }
                 else
                 {
-                    // Xử lý lỗi nếu có
                     ViewBag.ErrorMessage = "Failed to reset password. Please try again.";
                     return View();
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi nếu có
                 ViewBag.ErrorMessage = $"Failed to reset password: {ex.Message}";
                 return View();
             }

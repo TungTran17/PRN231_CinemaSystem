@@ -3,6 +3,7 @@ using DataAccess.Repositories;
 using DataAccess.Repositories.impl;
 using DataAccess.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace CinemaSystemManagermentAPI.Controllers
 {
@@ -13,12 +14,14 @@ namespace CinemaSystemManagermentAPI.Controllers
         private readonly IFilmRepository _filmRepository = new FilmRepository();
         private readonly IUserRepository _userRepository = new UserRepository();
 
+        [EnableQuery]
         [HttpGet("films")]
-        public ActionResult<List<Film>> GetFilms()
+        public ActionResult<List<Film>> Get()
         {
             return _filmRepository.GetFilms();
         }
 
+        [EnableQuery]
         [HttpGet("search")]
         public ActionResult<List<Film>> Search([FromQuery] string q)
         {
@@ -78,13 +81,12 @@ namespace CinemaSystemManagermentAPI.Controllers
 
 
         [HttpPost("forgot-password")]
-        public ActionResult ForgotPassword([FromForm] string email, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse)
+        public ActionResult ForgotPassword([FromForm] string email, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse, [FromForm(Name = "client-host")] string clientHost)
         {
             if (!GRecaptcha.Verify(gRecaptchaResponse))
             {
                 return BadRequest("Recaptcha verification failed.");
             }
-
             if (_userRepository.FindByEmail(email) is null)
             {
                 return BadRequest("Email not found.");
@@ -94,10 +96,9 @@ namespace CinemaSystemManagermentAPI.Controllers
             {
                 return BadRequest("Token creation failed.");
             }
-            var resetPasswordUrl = $"{Request.Scheme}://{Request.Host}/Home/ResetPassword?token={token}";
+            var resetPasswordUrl = $"{Request.Scheme}://{clientHost}/Home/ResetPassword?token={token}";
             SMTP.Instance.Send("Reset Password", $"Here is your reset password link: {resetPasswordUrl}", email);
             return Ok();
-
         }
 
         [HttpGet("reset-password")]

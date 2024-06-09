@@ -81,3 +81,9 @@ D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\obj\Debug\net
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\obj\Debug\net6.0\CinemaSystemManagermentAPI.pdb
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\obj\Debug\net6.0\CinemaSystemManagermentAPI.genruntimeconfig.cache
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\obj\Debug\net6.0\ref\CinemaSystemManagermentAPI.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\bin\Debug\net6.0\Microsoft.OData.Core.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\bin\Debug\net6.0\Microsoft.OData.Edm.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemManagermentAPI\bin\Debug\net6.0\Microsoft.Spatial.dll

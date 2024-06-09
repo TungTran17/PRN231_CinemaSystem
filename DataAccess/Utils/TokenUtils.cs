@@ -1,5 +1,4 @@
-﻿using DataAccess.Utils;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace DataAccess.Utils
 {

@@ -1,0 +1,29 @@
+﻿@model BussinessObject.Models.Category
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container mt-3">
+    <h1 class="text-center text-white">@Model.Name</h1>
+
+    <p class="text-muted">@Model.Desc</p>
+
+    <hr>
+
+    <div class="hanime-body__cards container-fluid">
+        <div class="row">
+            @foreach (var film in Model.Films)
+            {
+                <a asp-controller="Film" asp-action="Index" asp-route-id="@film.Id" class="hanime-body__card-item col-xl-3 col-md-4 col-sm-6 col-xs-12">
+                    <img class="hanime-body__card-item--thumbnail" style="object-position: center; object-fit: cover;" height="200"
+                         src="@film.ImageUrl">
+                    <div class="hanime-body__card-item--body">
+                        <p class="hanime-body__card-item--body--title">@film.Name</p>
+                        <p class="hanime-body__card-item--body--sub">@film.ReleaseDate</p>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
