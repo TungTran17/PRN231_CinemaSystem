@@ -4,7 +4,7 @@ namespace DataAccess.Repositories
 {
     public interface IFilmRepository
     {
-        Film getFilmWithCategoriesShowsRoom(int filmId);
+        Task<Film> getFilmWithCategoriesShowsRoom(int filmId);
         List<Film> GetFilms();
         Film findById(int filmId);
         void createFilm(Film film);

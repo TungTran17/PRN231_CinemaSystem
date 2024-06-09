@@ -58,17 +58,17 @@ namespace DataAccess.Dao
         }
 
 
-        public Film getFilmWithCategoriesShowsRoom(int filmId)
+        public async Task<Film> getFilmWithCategoriesShowsRoom(int filmId)
         {
             var films = new Film();
             try
             {
                 using var context = new CinemaSystemContext();
-                films = context.Films
+                films = await context.Films
                .Include(e => e.Categories)
                .Include(e => e.Shows)
-               .ThenInclude(e => e.Room)
-               .FirstOrDefault(e => e.Id == filmId);
+                    .ThenInclude(e => e.Room)
+               .FirstOrDefaultAsync(e => e.Id == filmId);
             }
             catch (Exception ex)
             {

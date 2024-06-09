@@ -13,7 +13,7 @@ namespace CinemaSystemWebClient.Controllers
             _httpClient = httpClient;
         }
 
-        [Route("Category/{categoryId}")]
+        [Route("Category/Index/{categoryId}")]
         public async Task<IActionResult> Index(int categoryId)
         {
             try

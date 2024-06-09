@@ -9,7 +9,7 @@ namespace DataAccess.Repositories.impl
         public void deleteFilm(Film film) => FilmDao.GetFilmDao.removeFilm(film);
         public Film findById(int filmId) => FilmDao.GetFilmDao.findById(filmId);
         public List<Film> GetFilms() => FilmDao.GetFilmDao.getFilm();
-        public Film getFilmWithCategoriesShowsRoom(int filmId) => FilmDao.GetFilmDao.getFilmWithCategoriesShowsRoom(filmId);
+        public Task<Film> getFilmWithCategoriesShowsRoom(int filmId) => FilmDao.GetFilmDao.getFilmWithCategoriesShowsRoom(filmId);
         public List<Film> SearchFilm(string q) => FilmDao.GetFilmDao.searchFilm(q);
 
     }
