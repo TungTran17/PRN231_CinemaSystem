@@ -14,6 +14,13 @@ namespace CinemaSystemManagermentAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            builder.Services.AddHttpContextAccessor();
             // Add services to the container.
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,6 +40,15 @@ namespace CinemaSystemManagermentAPI
 
             var app = builder.Build();
 
+            app.UseCookiePolicy(); // Thêm dòng này
+            app.Use(async (context, next) =>
+            {
+                foreach (var cookie in context.Request.Cookies)
+                {
+                    Console.WriteLine($"Cookie: {cookie.Key} = {cookie.Value}");
+                }
+                await next();
+            });
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

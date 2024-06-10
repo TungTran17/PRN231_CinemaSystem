@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LGwhYTiHjf0QNTXfXVf8AeDuPcCxNmh+HZxq4ZqKnJw=",
+  "Hash": "YLlLR9vrtWteGAG65Vlu1/UJeBlm+RgRCoQ0hoRRdqE=",
   "Source": "CinemaSystemWebClient",
   "BasePath": "_content/CinemaSystemWebClient",
   "Mode": "Default",
@@ -19,6 +19,13 @@
     }
   ],
   "DiscoveryPatterns": [
+    {
+      "Name": "CinemaSystemManagermentAPI\\wwwroot",
+      "Source": "CinemaSystemManagermentAPI",
+      "ContentRoot": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemManagermentAPI\\wwwroot\\",
+      "BasePath": "_content/CinemaSystemManagermentAPI",
+      "Pattern": "**"
+    },
     {
       "Name": "CinemaSystemWebClient\\wwwroot",
       "Source": "CinemaSystemWebClient",
@@ -65,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CinemaSystemWebClient.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\_0_d41d8cd98f00b204e9800998ecf8427e.png",
+      "SourceId": "CinemaSystemWebClient",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\",
+      "BasePath": "_content/CinemaSystemWebClient",
+      "RelativePath": "assets/_0_d41d8cd98f00b204e9800998ecf8427e.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\_0_d41d8cd98f00b204e9800998ecf8427e.png"
     },
     {
       "Identity": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\default.jpg",

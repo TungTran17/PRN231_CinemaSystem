@@ -10,7 +10,7 @@ namespace CinemaSystemWebClient
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient();
             builder.Services.AddSession();
-           
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

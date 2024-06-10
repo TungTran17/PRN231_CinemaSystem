@@ -4,7 +4,7 @@ namespace DataAccess.Repositories
 {
     public interface IUserRepository
     {
-        void AddToCard(User user, double money);
+        void AddToBaland(User user, double money);
         void ChangePassword(User user, string newPassword, string confirmPassword, string oldPassword);
         User? FindByEmail(string email);
         User? Login(string email, string password);

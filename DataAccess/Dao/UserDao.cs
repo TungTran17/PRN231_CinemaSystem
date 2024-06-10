@@ -43,7 +43,7 @@ namespace DataAccess.Dao
             dbcontext.SaveChanges();
         }
 
-        public void AddToCard(User user, double money)
+        public void AddToBaland(User user, double money)
         {
             using CinemaSystemContext dbcontext = new();
             user.Balance += money;

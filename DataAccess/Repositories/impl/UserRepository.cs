@@ -5,9 +5,9 @@ namespace DataAccess.Repositories.impl
 {
     public class UserRepository : IUserRepository
     {
-        public void AddToCard(User user, double money)
+        public void AddToBaland(User user, double money)
         {
-            UserDao.Instance.AddToCard(user, money);
+            UserDao.Instance.AddToBaland(user, money);
         }
 
         public void ChangePassword(User user, string newPassword, string confirmPassword, string oldPassword)

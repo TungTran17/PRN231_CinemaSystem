@@ -1,0 +1,99 @@
+﻿@model BussinessObject.Models.User
+@{
+    ViewData["Title"] = "Setting";
+}
+
+<link rel="stylesheet" href="/css/setting.css">
+
+<div>
+    <div class="container light-style flex-grow-1 container-p-y">
+
+        <h4 class="font-weight-bold py-3 mb-4 text-white">
+            Account settings
+        </h4>
+
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links" role="tablist">
+                        <a class="list-group-item list-group-item-action active" data-mdb-toggle="tab"
+                           href="#account-general">General</a>
+                        <a class="list-group-item list-group-item-action" data-mdb-toggle="tab"
+                           href="#account-change-password">Change password</a>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <hr class="d-md-none">
+                    <div class="tab-content">
+                        <form class="tab-pane fade active show" id="account-general" asp-action="ChangeInfor" asp-controller="User" enctype="multipart/form-data">
+                            <div class="card-body media align-items-center d-flex justify-content-around">
+                                @if (Model.AvatarUrl != null)
+                                {
+                                    <img src="@Model.AvatarUrl" alt="" class="rounded-circle" style="object-fit: cover; object-position: center;" width="80" height="80" id="img-avatar">
+                                }
+                                else
+                                {
+                                    <img src="placeholder-image-url.jpg" alt="Avatar" class="rounded-circle" style="object-fit: cover; object-position: center;" width="80" height="80" id="img-avatar">
+                                }
+                                <div class="media-body ml-4">
+                                    <label class="btn btn-outline-primary">
+                                        <span>Upload new photo</span>
+                                        <input type="file" name="avatar" data-img="img-avatar" data-max-size="5242880" data-error-max-size="File không quá 5MB" data-max-width="256" data-max-height="256" class="account-settings-fileinput file-upload" accept="image/*">
+                                    </label> &nbsp;
+                                    <a href="" class="btn btn-default md-btn-flat">Reset</a>
+                                </div>
+                            </div>
+                            <hr class="m-0" />
+                            <div class="card-body">
+                                <div class="form-outline mb-4 col-auto">
+                                    <input class="form-control" type="text" value="@Model.Name" name="name" />
+                                    <label class="form-label">Name</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="email" class="form-control mb-1" value="@Model.Email" name="email">
+                                    <label class="form-label">E-mail</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="text" class="form-control mb-1" value="@Model.Balance VND" readonly>
+                                    <label class="form-label">Balance</label>
+                                </div>
+                            </div>
+                            <div class="text-right mt-3">
+                                <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                                <a asp-action="Index" asp-controller="Home" class="btn btn-outline-primary">Cancel</a>
+                            </div>
+                        </form>
+
+
+                        <form class="tab-pane fade" id="account-change-password" asp-action="ChangePassword" asp-controller="User">
+                            <div class="card-body pb-2">
+                                <div class="form-outline mb-4">
+                                    <input type="password" class="form-control" name="old-password" autocomplete="off">
+                                    <label class="form-label">Current password</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" class="form-control" name="new-password" autocomplete="off">
+                                    <label class="form-label">New password</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" class="form-control" name="confirm-password" autocomplete="off">
+                                    <label class="form-label">Repeat new password</label>
+                                </div>
+                            </div>
+                            <div class="text-right mt-3">
+                                <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                                <a asp-action="Index" asp-controller="Home" class="btn btn-outline-primary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/file-upload.js"></script>

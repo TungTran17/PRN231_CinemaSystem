@@ -56,7 +56,7 @@ namespace DataAccess.Utils
             AuthenticationToken data = new AuthenticationToken
             {
                 Id = user.Id,
-                Expiry = DateTime.Now.Add(expireIn),
+                Expiry = DateTime.Now.Add(expireIn)
             };
 
             return TokenUtils.CreateToken(data, SECRET_KEY + user.Password);

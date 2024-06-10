@@ -9,6 +9,8 @@ D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\C
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\CinemaSystemWebClient.runtimeconfig.json
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\CinemaSystemWebClient.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\CinemaSystemWebClient.pdb
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -30,7 +32,11 @@ D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\M
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.OData.Core.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.OData.Edm.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.Spatial.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -91,9 +97,4 @@ D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\obj\Debug\net6.0\r
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\obj\Debug\net6.0\CinemaSystemWebClient.pdb
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\obj\Debug\net6.0\CinemaSystemWebClient.genruntimeconfig.cache
 D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\obj\Debug\net6.0\ref\CinemaSystemWebClient.dll
-D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
-D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.OData.Core.dll
-D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.OData.Edm.dll
-D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
-D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\Microsoft.Spatial.dll
+D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\bin\Debug\net6.0\CinemaSystemManagermentAPI.staticwebassets.runtime.json

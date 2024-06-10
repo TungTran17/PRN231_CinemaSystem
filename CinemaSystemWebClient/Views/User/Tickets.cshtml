@@ -1,0 +1,52 @@
+﻿@model List<IGrouping<BussinessObject.Models.Show, BussinessObject.Models.Ticket>>
+@{
+    ViewData["Title"] = "My Tickets";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        @foreach (var item in Model)
+        {
+            <div class="btn btn-sm p-0 m-2 w-100">
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-3">
+                        <img class="img-fluid" style="object-fit: cover; object-position: center;"
+                         src="@item.Key.Film?.ImageUrl"
+                         alt="" />
+                    </div>
+
+                    <div class="col-12 col-sm-8 col-md-9 mb-2 d-flex flex-column justify-content-center">
+                        <h6 class="text-truncate text-white m-0 mt-2">
+                            @item.Key.Film?.Name
+                        </h6>
+
+                        <strong class="mt-2">@item.Key.Room?.Name</strong>
+                    </div>
+                </div>
+
+                <div class="row p-3">
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+                                <th>Seat</th>
+                                <th>OTP</th>
+                                <th>Is Used</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ticket in item)
+                            {
+                                <tr>
+                                    <td>@ticket.Row - @ticket.Col</td>
+                                    <td>@ticket.Otp</td>
+                                    <td>@(ticket.IsUsed ? "Yes" : "No")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

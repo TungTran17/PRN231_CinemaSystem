@@ -162,6 +162,8 @@ namespace BussinessObject.Models
                 entity.Property(e => e.Name).HasMaxLength(64);
 
                 entity.Property(e => e.Password).HasMaxLength(64);
+
+                entity.Property(e => e.Balance).HasDefaultValue(10000000);
             });
 
             OnModelCreatingPartial(modelBuilder);

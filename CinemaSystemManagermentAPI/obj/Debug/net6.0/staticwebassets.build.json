@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "ZZL7wc9azb5w12W9uZET1055y1/ut0Zj1sRUJ0Nn6Kw=",
+  "Hash": "qkGcYWH3iWdtVPS6Gg4dbKj5xzcGO4Ic95W754PIcN8=",
   "Source": "CinemaSystemManagermentAPI",
   "BasePath": "_content/CinemaSystemManagermentAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "CinemaSystemManagermentAPI\\wwwroot",
+      "Source": "CinemaSystemManagermentAPI",
+      "ContentRoot": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemManagermentAPI\\wwwroot\\",
+      "BasePath": "_content/CinemaSystemManagermentAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

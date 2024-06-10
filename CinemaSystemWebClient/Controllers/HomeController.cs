@@ -28,7 +28,7 @@ namespace CinemaSystemWebClient.Controllers
             return View(searchResults);
         }
 
-        public IActionResult Signin()
+        public async Task<IActionResult> Signin()
         {
             return View();
         }

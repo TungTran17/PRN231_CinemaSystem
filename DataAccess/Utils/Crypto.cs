@@ -7,25 +7,25 @@ namespace DataAccess.Utils
     {
         public static string Base64Encode(byte[] plainTextBytes)
         {
-            return System.Convert.ToBase64String(plainTextBytes);
+            return Convert.ToBase64String(plainTextBytes);
         }
 
         public static string Base64Encode(string plainText)
         {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
             return Base64Encode(plainTextBytes);
         }
 
         public static string Base64Decode(string base64EncodedData)
         {
-            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
-            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+            var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
+            return Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
         public static string HashHMAC(string key, string message)
         {
-            var keyBytes = System.Text.Encoding.UTF8.GetBytes(key);
-            var messageBytes = System.Text.Encoding.UTF8.GetBytes(message);
+            var keyBytes = Encoding.UTF8.GetBytes(key);
+            var messageBytes = Encoding.UTF8.GetBytes(message);
 
             var hash = new HMACSHA256(keyBytes);
             return Base64Encode(hash.ComputeHash(messageBytes));
