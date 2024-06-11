@@ -100,22 +100,20 @@ namespace CinemaSystemManagermentAPI.Controllers
         [HttpPost("ChangePassword")]
         public IActionResult ChangePassword([FromForm(Name = "old-password")] string oldPassword, [FromForm(Name = "confirm-password")] string confirmPassword, [FromForm(Name = "new-password")] string newPassword)
         {
-            var user = Authentication.GetUserByCookies(Request.Cookies);
-
-            if (user == null)
+            if (Request.Headers.TryGetValue("Authorization", out StringValues headerValue))
             {
-                return Unauthorized("User not signed in.");
-            }
+                var token = headerValue.FirstOrDefault()?.Split(' ').Last();
 
-            try
-            {
-                _userRepository.ChangePassword(user, newPassword, confirmPassword, oldPassword);
+                if (!string.IsNullOrEmpty(token))
+                {
+                    var user = Authentication.GetUserByToken(token);
+                    _userRepository.ChangePassword(user, newPassword, confirmPassword, oldPassword);
+                }
+                else
+                {
+                    return Unauthorized("Invalid token.");
+                }
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-
             return Ok("Password changed successfully.");
         }
     }

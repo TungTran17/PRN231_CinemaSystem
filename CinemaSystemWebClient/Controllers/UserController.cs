@@ -101,27 +101,44 @@ namespace CinemaSystemWebClient.Controllers
             }
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(string oldPassword, string confirmPassword, string newPassword)
+        public async Task<IActionResult> ChangePass(string oldPassword, string confirmPassword, string newPassword)
         {
-            var form = new MultipartFormDataContent();
+            using var form = new MultipartFormDataContent();
             form.Add(new StringContent(oldPassword), "old-password");
             form.Add(new StringContent(confirmPassword), "confirm-password");
             form.Add(new StringContent(newPassword), "new-password");
 
-            var response = await _httpClient.PostAsync("https://localhost:7041/api/User/ChangePassword", form);
+            // Retrieve the token from cookies
+            if (!HttpContext.Request.Cookies.TryGetValue("token", out string token))
+            {
+                ViewBag.ErrorMessage = "User not signed in.";
+                return View("Setting");
+            }
+
+            // Create the request with the token in the header
+            var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7041/api/User/ChangePassword")
+            {
+                Content = form
+            };
+            request.Headers.Add("Authorization", "Bearer " + token);
+
+            var response = await _httpClient.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Setting");
+                return View("Signin");
             }
             else
             {
                 // Handle error
                 var error = await response.Content.ReadAsStringAsync();
-                return BadRequest(error);
+                ViewBag.ErrorMessage = error;
+                return View("Setting");
             }
         }
+
+       
+
     }
 }

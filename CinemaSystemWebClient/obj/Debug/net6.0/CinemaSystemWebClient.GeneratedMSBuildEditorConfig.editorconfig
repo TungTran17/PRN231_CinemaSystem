@@ -58,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTZXR0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/User/Signin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTaWduaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/User/Tickets.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxUaWNrZXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

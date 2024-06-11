@@ -28,6 +28,8 @@ namespace CinemaSystemWebClient.Controllers
             return View(searchResults);
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> Signin()
         {
             return View();
