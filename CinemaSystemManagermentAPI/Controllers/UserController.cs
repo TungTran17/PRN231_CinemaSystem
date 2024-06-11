@@ -5,6 +5,8 @@ using DataAccess.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.Extensions.Primitives;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace CinemaSystemManagermentAPI.Controllers
 {
@@ -24,7 +26,6 @@ namespace CinemaSystemManagermentAPI.Controllers
             {
                 // gán token
                 var token = headerValue.FirstOrDefault()?.Split(' ').Last();
-
                 if (!string.IsNullOrEmpty(token))
                 {
                     var user = Authentication.GetUserByToken(token);
@@ -43,21 +44,55 @@ namespace CinemaSystemManagermentAPI.Controllers
             return Ok(userFromCookies);
         }
 
+
         [HttpGet("Tickets")]
         public IActionResult GetTickets()
         {
-            var user = Authentication.GetUserByCookies(Request.Cookies);
-
-            if (user == null)
+            try
             {
-                return Unauthorized("User not signed in.");
+                if (Request.Headers.TryGetValue("Authorization", out StringValues headerValue))
+                {
+                    var token = headerValue.FirstOrDefault()?.Split(' ').Last();
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        var user = Authentication.GetUserByToken(token);
+                        if (user != null)
+                        {
+                            List<Ticket> list = _ticketRepository.GetListTicketWithFullInformation();
+                            var userTickets = list.Where(e => e.UserId == user.Id).GroupBy(e => e.Show)
+                                                  .Select(g => new
+                                                  {
+                                                      Show = g.Key,
+                                                      Tickets = g.ToList()
+                                                  }).ToList();
+
+                            var options = new JsonSerializerOptions
+                            {
+                                ReferenceHandler = ReferenceHandler.Preserve,
+                                WriteIndented = true
+                            };
+
+                            return new JsonResult(userTickets, options);
+                        }
+                        else
+                        {
+                            return Unauthorized("Invalid token.");
+                        }
+                    }
+                }
+
+                // Nếu không có tiêu đề "Authorization" hoặc không có token hợp lệ, trả về thông báo thành công
+                return Unauthorized("Authorization header or token is missing.");
             }
-
-            List<Ticket> list = _ticketRepository.GetListTicketWithFullInformation();
-            var userTickets = list.Where(e => e.UserId == user.Id).GroupBy(e => e.Show).ToList();
-
-            return Ok(userTickets);
+            catch (Exception ex)
+            {
+                // Ghi lại lỗi
+                // (Bạn có thể sử dụng logging framework như Serilog, NLog, etc.)
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return StatusCode(500, "An internal server error occurred.");
+            }
         }
+
 
         [HttpPost("ChangeInfo")]
         public IActionResult ChangeInfo([FromForm] string name, [FromForm] string email, [FromForm] IFormFile? avatar)

@@ -1,7 +1,7 @@
 ﻿using BussinessObject.Models;
+using DataAccess.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Text;
 
 namespace CinemaSystemWebClient.Controllers
 {
@@ -138,7 +138,60 @@ namespace CinemaSystemWebClient.Controllers
             }
         }
 
-       
+        public async Task<IActionResult> Tickets()
+        {
+            try
+            {
+                var cookies = HttpContext.Request.Cookies;
+                if (!cookies.TryGetValue("token", out string token))
+                {
+                    ViewBag.ErrorMessage = "User not signed in.";
+                    return View();
+                }
+
+                var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7041/api/User/Tickets");
+                request.Headers.Add("Authorization", "Bearer " + token);
+
+                var response = await _httpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    ViewBag.ErrorMessage = $"Error retrieving tickets: {error}";
+                    return View();
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+                var ticketDtos = JsonConvert.DeserializeObject<List<TicketDto>>(json);
+
+                // Convert TicketDto to Ticket
+                var tickets = ticketDtos.SelectMany(dto => dto.Tickets.Select(ticketDto => new Ticket
+                {
+                    Show = dto.Show, // Assign Show object from TicketDto
+                    Row = ticketDto.Row, // Map Row from TicketDto to Ticket
+                    Col = ticketDto.Col, // Map Col from TicketDto to Ticket
+                    Otp = ticketDto.Otp, // Map Otp from TicketDto to Ticket
+                    IsUsed = ticketDto.IsUsed // Map IsUsed from TicketDto to Ticket
+                })).ToList();
+
+                // Group tickets by Show using DataAccess.Dto.Grouping<Show, Ticket>
+                var groupedTickets = tickets.GroupBy(ticket => ticket.Show)
+                                            .Select(group => new Grouping<Show, Ticket>(group.Key, group.ToList()))
+                                            .ToList();
+
+                return View(groupedTickets);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = $"An error occurred: {ex.Message}";
+                return View();
+            }
+        }
+
+
+
+
+
 
     }
 }

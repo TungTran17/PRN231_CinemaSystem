@@ -41,14 +41,14 @@ namespace CinemaSystemManagermentAPI
             var app = builder.Build();
 
             app.UseCookiePolicy(); // Thêm dòng này
-            app.Use(async (context, next) =>
-            {
-                foreach (var cookie in context.Request.Cookies)
-                {
-                    Console.WriteLine($"Cookie: {cookie.Key} = {cookie.Value}");
-                }
-                await next();
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    foreach (var cookie in context.Request.Cookies)
+            //    {
+            //        Console.WriteLine($"Cookie: {cookie.Key} = {cookie.Value}");
+            //    }
+            //    await next();
+            //});
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
