@@ -154,7 +154,7 @@
                         @if (isAvailable)
                         {
                             <div class="modal fade model-@i-@j" tabindex="-1" aria-hidden="true">
-                                <form class="modal-dialog" asp-action="BuyTicket" asp-controller="Show">
+                                <form class="modal-dialog" asp-action="BuyTickets" asp-controller="Show">
                                     <input type="hidden" name="id" value="@Model.Id" />
                                     <input type="hidden" name="row" value="@i" />
                                     <input type="hidden" name="col" value="@j" />

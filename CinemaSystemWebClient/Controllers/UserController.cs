@@ -188,10 +188,5 @@ namespace CinemaSystemWebClient.Controllers
             }
         }
 
-
-
-
-
-
     }
 }
