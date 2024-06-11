@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Show/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvd1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/User/Setting.cshtml]

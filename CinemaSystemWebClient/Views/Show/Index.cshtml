@@ -1,0 +1,184 @@
+﻿@model BussinessObject.Models.Show
+
+@{
+    ViewData["Title"] = "Show";
+    var usedSeats = Model.Tickets.Select(e => (e.Row, e.Col));
+    var isAvailable = Model.End > DateTime.Now;
+    var isPresent = Model.Start < DateTime.Now && isAvailable;
+}
+
+@if (ViewBag.Message is not null) {
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        @ViewBag.Message
+        <button type="button" class="btn-close" onclick="this.parentNode.remove()"></button>
+    </div>
+}
+
+<style>
+    .room-slot-table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .room-slot-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .room-slot-cell {
+        background-color: #ff765f;
+        text-align: center;
+        height: 30px;
+        width: 30px;
+        margin: 1px;
+    }
+
+    .room-slot-cell-header {
+        background-color: #00000000;
+    }
+
+    .room-slot-cell-available {
+        background-color: white;
+    }
+
+        .room-slot-cell-available:hover {
+            background-color: #5f7630;
+        }
+</style>
+
+<div class="container p-4 text-white-50">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 d-flex justify-content-center flex-column">
+            <img src="@Model.Film?.ImageUrl" class="img-fluid img-thumbnail" alt="">
+        </div>
+
+        <div class="col-sm-12 col-md-6 p-4 d-flex flex-column justify-content-center">
+            <div class="row">
+                <div class="col">Name</div>
+                <div class="col text-truncate" data-mdb-toggle="tooltip" data-mdb-original-title="@Model.Film?.Name" />
+                @Model.Film?.Name
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col">Room</div>
+            <div class="col">
+                @Model.Room?.Name
+                @if (isPresent)
+                {
+                    <span class="badge bg-success">Present</span>
+                }
+                else if (isAvailable)
+                {
+                    <span class="badge bg-warning">Future</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Past</span>
+                }
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col">From @Model.Start</div>
+            <div class="col">To @Model.End</div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <h5 class="col">Ticket Price</h5>
+            <button type="button" class="btn btn-warning col">
+                @Model.TicketPrice VND
+            </button>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="d-flex align-items-center">
+    <h5>Shows</h5>
+
+    @if (ViewBag.User?.Role == (int) BussinessObject.Models.User.Roles.Admin)
+    {
+        <div class="ms-2">
+            <a class="p-0 m-0" asp-action="CreateShow" asp-controller="Film" asp-route-id="@Model.Id">
+                <div class="btn btn-dark">
+                    <i class="fa fa-plus"></i>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+<div class="row p-2 pt-0">
+    <div class="room-slot-table">
+        @for (int i = 0; i < Model.Room?.Rows; i++)
+        {
+            @if (i == 0)
+            {
+                <div class="room-slot-row">
+                    <div class="room-slot-cell room-slot-cell-header"></div>
+                    @for (int j = 0; j < Model.Room?.Cols; j++)
+                    {
+                        <div class="room-slot-cell room-slot-cell-header">
+                            @(j + 1)
+                        </div>
+                    }
+                </div>
+            }
+            <div class="room-slot-row">
+                @for (int j = 0; j < Model.Room?.Cols; j++)
+                {
+                    @if (j == 0)
+                    {
+                        <div class="room-slot-cell room-slot-cell-header">
+                            @(i + 1)
+                        </div>
+                    }
+
+                    @if (usedSeats.Any(e => e.Row == i && e.Col == j))
+                    {
+                        <div class="room-slot-cell">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="room-slot-cell room-slot-cell-available" data-row="@i" data-col="@j" data-mdb-toggle="modal" data-mdb-target=".model-@i-@j">
+                        </div>
+
+                        @if (isAvailable)
+                        {
+                            <div class="modal fade model-@i-@j" tabindex="-1" aria-hidden="true">
+                                <form class="modal-dialog" asp-action="BuyTicket" asp-controller="Show">
+                                    <input type="hidden" name="id" value="@Model.Id" />
+                                    <input type="hidden" name="row" value="@i" />
+                                    <input type="hidden" name="col" value="@j" />
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-dark">Buy Ticket</h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-black-50">
+                                            Do you want to buy this ticket for @Model.TicketPrice VND?
+                                            Your seat is at @(i + 1)-@(j + 1)
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">OK</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        }
+    </div>
+</div>

@@ -73,6 +73,7 @@ namespace CinemaSystemManagermentAPI
             builder.EntitySet<Film>("Home");
             builder.EntitySet<Film>("Film");
             builder.EntitySet<User>("User");
+            builder.EntitySet<Show>("Show");
             return builder.GetEdmModel();
         }
     }
