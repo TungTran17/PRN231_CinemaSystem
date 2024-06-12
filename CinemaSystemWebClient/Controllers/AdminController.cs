@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace CinemaSystemWebClient.Controllers
 {
@@ -55,6 +56,32 @@ namespace CinemaSystemWebClient.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {innerException?.Message}");
             }
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreShow(int id, float price, DateTime start, int room)
+        {
+            var showData = new
+            {
+                Id = id,
+                Price = price,
+                Start = start,
+                Room = room
+            };
+
+            var content = new StringContent(JsonConvert.SerializeObject(showData), Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("https://localhost:7041/api/Admin/CreateShow", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                return BadRequest(errorMessage);
+            }
         }
     }
 }

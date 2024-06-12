@@ -57,7 +57,6 @@ namespace CinemaSystemManagermentAPI.Controllers
 
                 var jsonResponse = JsonSerializer.Serialize(response, options);
 
-                // Log the response size
                 var responseSize = jsonResponse.Length;
                 Console.WriteLine($"Response size: {responseSize} bytes");
 
@@ -70,10 +69,10 @@ namespace CinemaSystemManagermentAPI.Controllers
         }
 
         [HttpPost("createShow")]
-        public IActionResult CreateShow(int id, float price, DateTime start, int room)
+        public IActionResult CreateShow([FromBody] ShowDto showDto)
         {
-            var film = _filmRepository.findById(id);
-            var roomObj = _roomRepository.getRoomById(room);
+            var film = _filmRepository.findById(showDto.Id);
+            var roomObj = _roomRepository.getRoomById(showDto.Room);
 
             if (film is null || roomObj is null)
             {
@@ -84,9 +83,9 @@ namespace CinemaSystemManagermentAPI.Controllers
             {
                 FilmId = film.Id,
                 RoomId = roomObj.Id,
-                Start = start,
-                End = start.AddMinutes(film.Length),
-                TicketPrice = price
+                Start = showDto.Start,
+                End = showDto.Start.AddMinutes(film.Length),
+                TicketPrice = showDto.Price
             };
 
             if (_showRepository.checkvalidShow(show))
