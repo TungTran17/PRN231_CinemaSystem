@@ -37,6 +37,7 @@ namespace CinemaSystemManagermentAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ODataASPNETCoreDemo", Version = "v1" });
             });
+            builder.Services.AddScoped<AdminAuthorizationFilter>();
 
             var app = builder.Build();
 

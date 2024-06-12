@@ -117,13 +117,13 @@
 
 <div class="row p-2 pt-0">
     <div class="room-slot-table">
-        @for (int i = 0; i < Model.Room?.Rows; i++)
+        @for (int i = -1; i < Model.Room?.Rows; i++)
         {
-            @if (i == 0)
+            @if (i == -1)
             {
                 <div class="room-slot-row">
                     <div class="room-slot-cell room-slot-cell-header"></div>
-                    @for (int j = 0; j < Model.Room?.Cols; j++)
+                    @for (int j = -1; j < Model.Room?.Cols; j++)
                     {
                         <div class="room-slot-cell room-slot-cell-header">
                             @(j + 1)
@@ -132,9 +132,9 @@
                 </div>
             }
             <div class="room-slot-row">
-                @for (int j = 0; j < Model.Room?.Cols; j++)
+                @for (int j = -1; j < Model.Room?.Cols; j++)
                 {
-                    @if (j == 0)
+                    @if (j == -1)
                     {
                         <div class="room-slot-cell room-slot-cell-header">
                             @(i + 1)

@@ -31,17 +31,17 @@
                             <thead>
                                 <tr>
                                     <th>Seat</th>
+                                    <th>Date</th>
                                     <th>OTP</th>
-                                    <th>Is Used</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var ticket in group.Items)
                                 {
                                     <tr>
-                                        <td>@ticket.Row - @ticket.Col</td>
+                                        <td>R.@ticket.Row-C.@ticket.Col</td>
+                                        <td>@ticket.Date</td>
                                         <td>@ticket.Otp</td>
-                                        <td>@(ticket.IsUsed ? "Yes" : "No")</td>
                                     </tr>
                                 }
                             </tbody>

@@ -167,18 +167,17 @@ namespace CinemaSystemWebClient.Controllers
                 // Convert TicketDto to Ticket
                 var tickets = ticketDtos.SelectMany(dto => dto.Tickets.Select(ticketDto => new Ticket
                 {
-                    Show = dto.Show, // Assign Show object from TicketDto
-                    Row = ticketDto.Row, // Map Row from TicketDto to Ticket
-                    Col = ticketDto.Col, // Map Col from TicketDto to Ticket
-                    Otp = ticketDto.Otp, // Map Otp from TicketDto to Ticket
-                    IsUsed = ticketDto.IsUsed // Map IsUsed from TicketDto to Ticket
+                    Show = dto.Show, 
+                    Row = ticketDto.Row, 
+                    Col = ticketDto.Col, 
+                    Otp = ticketDto.Otp,
+                    Date = ticketDto.Date
                 })).ToList();
 
                 // Group tickets by Show using DataAccess.Dto.Grouping<Show, Ticket>
                 var groupedTickets = tickets.GroupBy(ticket => ticket.Show)
                                             .Select(group => new Grouping<Show, Ticket>(group.Key, group.ToList()))
                                             .ToList();
-
                 return View(groupedTickets);
             }
             catch (Exception ex)
