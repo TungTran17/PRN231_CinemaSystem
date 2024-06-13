@@ -129,33 +129,37 @@ namespace CinemaSystemManagermentAPI.Controllers
         }
 
         [HttpPost("film")]
-        public async Task<IActionResult> Film([FromForm] FilmDto filmDto, IFormFile? image)
+        public IActionResult Film([FromForm] FilmDto filmDto, [FromForm(Name = "image")] IFormFile? image)
         {
             switch (filmDto.Action)
             {
                 case "create":
-                    if (image is not null)
+                    if (image != null)
                     {
                         var webClientRootPath = Path.Combine(Environment.CurrentDirectory, "..", "CinemaSystemWebClient", "wwwroot");
                         var uploadPath = Path.Combine(webClientRootPath, "assets");
-                        using (var stream = image.OpenReadStream())
+                        using var stream = image.OpenReadStream();
+                        var filepath = UploadFile.Upload(uploadPath, image.FileName, stream).FileName;
+
+                        var newFilm = new Film
                         {
-                            string filepath = UploadFile.Upload(uploadPath, image.FileName, stream).FileName;
+                            Name = filmDto.FilmName,
+                            Desc = filmDto.Description,
+                            Categories = dbcontext.Categories.Where(e => filmDto.Categories!.Contains(e.Id)).ToList(),
+                            ReleaseDate = filmDto.ReleaseDate ?? DateTime.Now,
+                            Length = filmDto.FilmLength ?? 0,
+                            ImageUrl = $"/assets/{filepath}"
+                        };
 
-                            dbcontext.Films.Add(new Film()
-                            {
-                                Name = filmDto.Name,
-                                Desc = filmDto.Description,
-                                Categories = dbcontext.Categories.Where(e => filmDto.Categories!.Contains(e.Id)).ToList(),
-                                ReleaseDate = filmDto.ReleaseDate!.Value,
-                                Length = filmDto.Length!.Value,
-                                ImageUrl = filepath
-                            });
+                        dbcontext.Films.Add(newFilm);
+                        dbcontext.SaveChanges();
 
-                            await dbcontext.SaveChangesAsync();
-                        }
+                        return Ok(newFilm);
                     }
-                    break;
+                    else
+                    {
+                        return BadRequest("No image file provided.");
+                    }
                 case "delete":
                     if (filmDto.Id.HasValue)
                     {

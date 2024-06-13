@@ -2,6 +2,7 @@
 using DataAccess.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace CinemaSystemWebClient.Controllers
 {
@@ -64,7 +65,7 @@ namespace CinemaSystemWebClient.Controllers
             if (avatar != null)
             {
                 var fileContent = new StreamContent(avatar.OpenReadStream());
-                fileContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
+                fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                 {
                     Name = "avatar",
                     FileName = avatar.FileName

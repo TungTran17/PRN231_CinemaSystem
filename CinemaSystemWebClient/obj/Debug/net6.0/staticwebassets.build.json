@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hcSr+kb7BtsHD+5yctKhH6jr8cBVVyyprAlJVw5R3Uw=",
+  "Hash": "VLQUAjU97t9+iX/i3eXuDL8JlpOPckCmJf396oB2PGQ=",
   "Source": "CinemaSystemWebClient",
   "BasePath": "_content/CinemaSystemWebClient",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\_1_d41d8cd98f00b204e9800998ecf8427e.png"
+    },
+    {
+      "Identity": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\_2_d41d8cd98f00b204e9800998ecf8427e.png",
+      "SourceId": "CinemaSystemWebClient",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\",
+      "BasePath": "_content/CinemaSystemWebClient",
+      "RelativePath": "assets/_2_d41d8cd98f00b204e9800998ecf8427e.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\_2_d41d8cd98f00b204e9800998ecf8427e.png"
     },
     {
       "Identity": "D:\\FPTU\\SU24\\PRN231\\PRN231_CinemaSystem\\CinemaSystemWebClient\\wwwroot\\assets\\default.jpg",

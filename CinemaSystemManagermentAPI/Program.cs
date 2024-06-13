@@ -1,4 +1,4 @@
-using BussinessObject.Models;
+ï»¿using BussinessObject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
@@ -25,31 +25,29 @@ namespace CinemaSystemManagermentAPI
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            //Filter odata
-            builder.Services.AddSwaggerGen(c => c.OperationFilter<ODataOperationFilter>());
-            //Regis context
-            builder.Services.AddDbContext<CinemaSystemContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            //regis odata
-            builder.Services.AddControllers().AddOData(opt => opt.Count().Filter().Expand().Select().OrderBy().SetMaxTop(100)
-                .AddRouteComponents("odata", GetEdmModel()));
+
+            // Configure Swagger and OData
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ODataASPNETCoreDemo", Version = "v1" });
+                c.OperationFilter<ODataOperationFilter>();
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cinema System API", Version = "v1" });
+                c.CustomSchemaIds(type => type.FullName); // TrÃ¡nh xung Ä‘á»™t tÃªn
             });
+
+            // Register DbContext
+            builder.Services.AddDbContext<CinemaSystemContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Register OData
+            builder.Services.AddControllers().AddOData(opt => opt.Count().Filter().Expand().Select().OrderBy().SetMaxTop(100)
+                .AddRouteComponents("odata", GetEdmModel()));
+
             builder.Services.AddScoped<AdminAuthorizationFilter>();
 
             var app = builder.Build();
 
-            app.UseCookiePolicy(); // Thêm dòng này
-            //app.Use(async (context, next) =>
-            //{
-            //    foreach (var cookie in context.Request.Cookies)
-            //    {
-            //        Console.WriteLine($"Cookie: {cookie.Key} = {cookie.Value}");
-            //    }
-            //    await next();
-            //});
+            app.UseCookiePolicy();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -58,15 +56,12 @@ namespace CinemaSystemManagermentAPI
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
             app.MapControllers();
-
             app.Run();
         }
 
-        //Odata GetEdmModel
+        // OData GetEdmModel
         private static IEdmModel GetEdmModel()
         {
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
