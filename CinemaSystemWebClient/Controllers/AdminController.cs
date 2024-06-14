@@ -45,6 +45,7 @@ namespace CinemaSystemWebClient.Controllers
                 ViewBag.Categories = data.Categories;
                 ViewBag.Films = data.Films;
                 ViewBag.Orders = data.Orders;
+                ViewBag.Shows = data.Shows;
                 ViewBag.ActiveTab = data.ActiveTab;
 
                 return View(data);
@@ -154,8 +155,21 @@ namespace CinemaSystemWebClient.Controllers
             }
         }
 
+        public async Task<IActionResult> DeleteShows(int showId)
+        {
+            string tab = "show";
+            string url = $"https://localhost:7041/api/Admin/show/{showId}";
+            HttpResponseMessage response = await _httpClient.DeleteAsync(url);
 
-
-
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index), new { tab = tab });
+            }
+            else
+            {
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                return BadRequest(errorMessage);
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace DataAccess.Dto
         public List<Category> Categories { get; set; }
         public List<Film> Films { get; set; }
         public List<Ticket> Orders { get; set; }
+        public List<Show> Shows { get; set; }
         public string ActiveTab { get; set; }
     }
 }

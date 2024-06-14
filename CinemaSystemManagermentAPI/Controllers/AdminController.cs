@@ -48,7 +48,8 @@ namespace CinemaSystemManagermentAPI.Controllers
                 var categories = _categoryRepository.getListCategory();
                 var films = _filmRepository.GetFilms();
                 var orders = _ticketRepository.getAllTicket();
-                var response = new { AdminUser, Categories = categories, Films = films, Orders = orders, ActiveTab = tab };
+                var shows = _showRepository.GetShows();
+                var response = new { AdminUser, Categories = categories, Films = films, Orders = orders, Shows = shows, ActiveTab = tab };
                 var options = new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve,
@@ -172,5 +173,20 @@ namespace CinemaSystemManagermentAPI.Controllers
             }
             return Ok("Film action successful!");
         }
+
+        [HttpDelete("show/{id}")]
+        public IActionResult DeleteShow(int id)
+        {
+            bool isDeleted = _showRepository.removeShow(id);
+            if (isDeleted)
+            {
+                return Ok("Delete show successful!");
+            }
+            else
+            {
+                return NotFound("Show not found!");
+            }
+        }
+
     }
 }

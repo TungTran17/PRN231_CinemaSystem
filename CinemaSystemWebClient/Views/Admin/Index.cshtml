@@ -291,31 +291,42 @@
                             <tr>
                                 <th scope="col" style="width: 100px;">ID</th>
                                 <th scope="col">Film Name</th>
-                                <th scope="col" style="width: 160px;">Option</th>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">End Time</th>
+                                <th scope="col">Ticket Price</th>
+                                <th scope="col">Room</th>
+                                <th scope="col" style="width: 160px;">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (Film film in ViewBag.Films)
+                            @foreach (Show show in ViewBag.Shows)
                             {
                                 <tr>
-                                    <form asp-action="CRUDFilm" asp-controller="Admin">
+                                    <form asp-action="DeleteShows" asp-controller="Admin">
                                     <th scope="row">
-                                        <span>@film.Id</span>
-                                        <input type="hidden" name="id" value="@film.Id">
+                                        <span>@show.Id</span>
+                                        <input type="hidden" name="showId" value="@show.Id">
                                     </th>
-
                                     <td>
-                                        <p>@film.Name</p>
+                                        <p>@show.Film.Name</p>
                                     </td>
-
+                                    <td>
+                                        <p>@show.Start</p>
+                                    </td>
+                                    <td>
+                                        <p>@show.End</p>
+                                    </td>
+                                    <td>
+                                        <p>@show.TicketPrice</p>
+                                    </td>
+                                    <td>
+                                        <p>@show.Room.Name</p>
+                                    </td>
                                     <td>
                                         <button type="submit" class="btn btn-outline-danger" name="action"
                                                 value="delete">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                        <a asp-controller="Film" asp-action="Index" asp-route-id="@film.Id" class="btn btn-outline-light">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
                                     </td>
                                     </form>
                                 </tr>

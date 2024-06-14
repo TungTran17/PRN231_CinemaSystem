@@ -23,6 +23,16 @@ namespace DataAccess.Dao
             }
         }
 
+        public List<Show> GetAllShow()
+        {
+            using var context = new CinemaSystemContext();
+            var shows = context.Shows
+                 .Include(s => s.Film)
+                 .Include(s => s.Room)
+                 .ToList();
+            return shows;
+        }
+
         public Show getShowWithFilmRoomTickets(int filmId)
         {
             var show = new Show();
@@ -87,5 +97,28 @@ namespace DataAccess.Dao
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool DeleteShow(int showId)
+        {
+            try
+            {
+                using var context = new CinemaSystemContext();
+
+                var show = context.Shows.FirstOrDefault(s => s.Id == showId);
+                if (show != null)
+                {
+                    context.Shows.Remove(show);
+                    context.SaveChanges();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

@@ -27,7 +27,6 @@ namespace CinemaSystemWebClient.Controllers
             }
             var json = await response.Content.ReadAsStringAsync();
             var show = JsonConvert.DeserializeObject<Show>(json);
-            ViewBag.Shows = show;
             return View(show);
         }
 
