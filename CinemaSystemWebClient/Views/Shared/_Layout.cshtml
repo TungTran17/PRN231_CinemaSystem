@@ -161,6 +161,13 @@
                         <span>Admin pages</span>
                     </a>
                 }
+                @if (ViewBag.User?.Role == (int)BussinessObject.Models.User.Roles.Staff)
+                {
+                    <a asp-action="Index" asp-controller="Staff" class="hanime-nav-bar__link">
+                        <i class="fa-solid fa-crown"></i>
+                        <span>Staff pages</span>
+                    </a>
+                }
             }
             <hr>
 
