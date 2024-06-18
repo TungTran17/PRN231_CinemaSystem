@@ -60,6 +60,7 @@ namespace CinemaSystemWebClient.Controllers
                 //HttpContext.Session.SetString("token", token);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.ErrorMessage = "Email or Password incorrect";
             return View();
         }
 
