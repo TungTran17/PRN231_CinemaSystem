@@ -34,7 +34,7 @@ namespace CinemaSystemWebClient
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllers(); // This maps [ApiController] attributes
+                endpoints.MapControllers();
             });
 
             app.Run();

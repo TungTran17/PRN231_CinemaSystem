@@ -158,14 +158,14 @@
                 {
                     <a asp-action="Index" asp-controller="Admin" class="hanime-nav-bar__link">
                         <i class="fa-solid fa-crown"></i>
-                        <span>Admin pages</span>
+                        <span>Admin Pages</span>
                     </a>
                 }
                 @if (ViewBag.User?.Role == (int)BussinessObject.Models.User.Roles.Staff)
                 {
                     <a asp-action="Index" asp-controller="Staff" class="hanime-nav-bar__link">
                         <i class="fa-solid fa-crown"></i>
-                        <span>Staff pages</span>
+                        <span>Staff Pages</span>
                     </a>
                 }
             }

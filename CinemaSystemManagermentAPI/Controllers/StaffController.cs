@@ -5,7 +5,6 @@ using DataAccess.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
 
 namespace CinemaSystemManagermentAPI.Controllers
 {
@@ -13,6 +12,7 @@ namespace CinemaSystemManagermentAPI.Controllers
     [ApiController]
     public class StaffController : ControllerBase
     {
+        private readonly CinemaSystemContext _context = new CinemaSystemContext();
         public User StaffUser { get; set; } = null!;
 
         [HttpGet("get-shows")]
@@ -37,7 +37,6 @@ namespace CinemaSystemManagermentAPI.Controllers
                     return Unauthorized("Authorization header not found.");
                 }
 
-                using var db = new CinemaSystemContext();
                 var intervalTS = TimeSpan.FromMilliseconds(interval);
                 var startTime = DateTime.Now;
                 var endTime = DateTime.Now.Add(intervalTS);
@@ -46,7 +45,7 @@ namespace CinemaSystemManagermentAPI.Controllers
                 {
                     Success = true,
                     Message = "Shows successfully retrieved",
-                    Shows = db.Shows
+                    Shows = _context.Shows
                         .Include(s => s.Film)
                         .Include(s => s.Room)
                         .Select(s => new ShowDtoStaff()
@@ -75,13 +74,28 @@ namespace CinemaSystemManagermentAPI.Controllers
         }
 
         [HttpPost("check-ticket")]
-        public CheckTicketResponse CheckTicket([FromForm] string token, [FromForm] int showId, [FromForm] string email, [FromForm] string otp)
+        public ActionResult<CheckTicketResponse> CheckTicket([FromForm] int showId, [FromForm] string email, [FromForm] string otp)
         {
             try
             {
-                var user = Authentication.GetUserByToken(token);
+                if (Request.Headers.TryGetValue("Authorization", out StringValues headerValue))
+                {
+                    var token = headerValue.FirstOrDefault()?.Split(' ').Last();
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        StaffUser = Authentication.GetUserByToken(token);
+                    }
+                    else
+                    {
+                        return Unauthorized("Invalid token.");
+                    }
+                }
+                else
+                {
+                    return Unauthorized("Authorization header not found.");
+                }
 
-                if (user is null)
+                if (StaffUser is null)
                 {
                     return new CheckTicketResponse()
                     {
@@ -89,8 +103,7 @@ namespace CinemaSystemManagermentAPI.Controllers
                         Message = "Invalid token"
                     };
                 }
-
-                if (user.Role == (int)BussinessObject.Models.User.Roles.User)
+                if (StaffUser.Role == (int)BussinessObject.Models.User.Roles.User)
                 {
                     return new CheckTicketResponse()
                     {
@@ -99,10 +112,13 @@ namespace CinemaSystemManagermentAPI.Controllers
                     };
                 }
 
-                using var db = new CinemaSystemContext();
-                var ticket = db.Tickets
-                    .Include(e => e.User)
-                    .FirstOrDefault(e => e.User!.Email == email && e.ShowId == showId && e.Otp == otp && !e.IsUsed);
+                var ticket = _context.Tickets
+                            .Include(e => e.User)
+                            .Include(e => e.Show)
+                                .ThenInclude(s => s.Film)
+                            .Include(e => e.Show)
+                                .ThenInclude(s => s.Room)
+                            .FirstOrDefault(e => e.User!.Email == email && e.ShowId == showId && e.Otp == otp && !e.IsUsed);
 
                 if (ticket is null)
                 {
@@ -114,10 +130,22 @@ namespace CinemaSystemManagermentAPI.Controllers
                 }
 
                 ticket.IsUsed = true;
-                db.SaveChanges();
+                _context.SaveChanges();
+
+                var checkTicketDto = new CheckTicketViewDto
+                {
+                    UserName = ticket.User.Name,
+                    Film = ticket.Show.Film.Name,
+                    Room = ticket.Show.Room.Name,
+                    Row = ticket.Row,
+                    Col = ticket.Col,
+                    Date = ticket.Show.Start,
+                    Status = ticket.IsUsed
+                };
 
                 return new CheckTicketResponse()
                 {
+                    CheckTicket = checkTicketDto,
                     Success = true,
                     Message = "Ticket successfully checked"
                 };

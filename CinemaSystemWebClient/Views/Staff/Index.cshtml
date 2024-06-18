@@ -4,7 +4,6 @@
     Layout = null;
     var activeTab = ViewBag.ActiveTab ?? "show";
     var staffUser = ViewBag.StaffUser as User;
-    var shows = ViewBag.Shows as List<ShowDtoStaff>;
 }
 
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin page</title>
+    <title>Staff Page</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -90,10 +89,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var show in shows)
+                            @foreach (var show in ViewBag.Shows)
                             {
                                 <tr>
-                                    <form asp-action="DeleteShow" asp-controller="Staff" method="post">
                                     <td>
                                         <p>@show.Film</p>
                                     </td>
@@ -110,11 +108,10 @@
                                         <p>@show.Room</p>
                                     </td>
                                     <td>
-                                        <button type="submit" class="btn btn-outline-success" name="action" value="check">
+                                        <button type="button" class="btn btn-outline-success check-show" data-show-id="@show.Id">
                                             <i class="fa fa-check"></i>
                                         </button>
                                     </td>
-                                    </form>
                                 </tr>
                             }
                         </tbody>
@@ -122,12 +119,83 @@
                 </div>
 
                 <script>
-                    window.addEventListener('load', () => {
-                        document.querySelector("#@activeTab").classList.add("show", "active");
-                        document.querySelector("a[data-bs-target='#@activeTab']").classList.add("active");
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        $(".check-show").on("click", function () {
+                            var showId = $(this).data("show-id");
+                            $("#ShowId").val(showId);
+                        });
                     });
                 </script>
             </div>
+
+            <!-- Ticket Tab -->
+            <div class="tab-pane fade" id="ticket">
+                <div class="container p-3">
+                    <form class="bg-secondary rounded h-100 p-4" asp-action="Check" asp-controller="Staff" autocomplete="off">
+                        <h6 class="mb-4">Check Ticket</h6>
+
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="ShowId" name="ShowId" placeholder="ShowId" readonly>
+                            <label>ShowID</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="Email" placeholder="Email" required>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" name="Otp" placeholder="Otp" required />
+                            <label>OTP</label>
+                        </div>
+
+                        <button class="btn btn-primary m-1" type="submit" name="action" value="check">Check</button>
+                        <button class="btn btn-outline-light m-1" type="reset">Clear</button>
+                    </form>
+                </div>
+                <div class="container p-3">
+                    <h6 class="mb-4">List Ticket</h6>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Use Name</th>
+                                <th scope="col">Film</th>
+                                <th scope="col">Room</th>
+                                <th scope="col">Seat</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        @if (ViewBag.Tickets != null && ViewBag.Tickets.Count > 0)
+                        {
+                            <tbody>
+                                @foreach (var ticket in ViewBag.Tickets)
+                                {
+                                    <tr>
+                                        <td>@ticket.UserName</td>
+                                        <td>@ticket.Film</td>
+                                        <td>@ticket.Room</td>
+                                        <td>C.@ticket.Col - R.@ticket.Row</td>
+                                        <td>@ticket.Date</td>
+                                        <td>
+                                            <i class="fas fa-check-circle text-success"></i>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                        else
+                        {
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">No tickets found.</td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+
         </div>
         <!-- Content End -->
     </div>
@@ -147,6 +215,10 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/datatables.js"></script>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
