@@ -32,7 +32,7 @@ namespace DataAccess.Repositories.impl
 
         public void Signup(User user)
         {
-            UserDao.Instance.Signup(user);
+            UserDao.Instance.Signup (user);
         }
 
         public void UpdateUser(User user, string name, string email, string? avatar)

@@ -69,5 +69,28 @@ namespace DataAccess.Dao
             }
             return tickets;
         }
+
+        public List<Ticket> GetTicketByIsUser()
+        {
+            var tickets = new List<Ticket>();
+            try
+            {
+                using var context = new CinemaSystemContext();
+                tickets = context.Tickets
+                    .Include(t => t.User)
+                    .Include(t => t.Show)
+                    .ThenInclude(s => s.Room)
+                    .Include(t => t.Show)
+                    .ThenInclude(s => s.Film)
+                    .Where(t => t.IsUsed == true) 
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return tickets;
+        }
+
     }
 }

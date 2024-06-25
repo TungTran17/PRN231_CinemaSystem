@@ -8,5 +8,6 @@ namespace DataAccess.Repositories.impl
         public List<Ticket> GetListTicketWithFullInformation() => TicketDao.GetTicketDao.GetListTicketWitFullInfomation();
         public void addNewTicket(Ticket ticket) => TicketDao.GetTicketDao.addNewTicket(ticket);
         public List<Ticket> getAllTicket() => TicketDao.GetTicketDao.getAllTicket();
+        public List<Ticket> getTicketByIsUser() => TicketDao.GetTicketDao.GetTicketByIsUser();
     }
 }

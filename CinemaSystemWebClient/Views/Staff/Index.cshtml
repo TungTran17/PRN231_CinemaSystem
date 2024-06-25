@@ -131,6 +131,13 @@
             <!-- Ticket Tab -->
             <div class="tab-pane fade" id="ticket">
                 <div class="container p-3">
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>@ViewBag.ErrorMessage</strong>
+                        </div>
+                    }
                     <form class="bg-secondary rounded h-100 p-4" asp-action="Check" asp-controller="Staff" autocomplete="off">
                         <h6 class="mb-4">Check Ticket</h6>
 
@@ -175,7 +182,7 @@
                                         <td>@ticket.UserName</td>
                                         <td>@ticket.Film</td>
                                         <td>@ticket.Room</td>
-                                        <td>C.@ticket.Col - R.@ticket.Row</td>
+                                        <td>R.@ticket.Row - C.@ticket.Col</td>
                                         <td>@ticket.Date</td>
                                         <td>
                                             <i class="fas fa-check-circle text-success"></i>
@@ -188,7 +195,7 @@
                         {
                             <tbody>
                                 <tr>
-                                    <td colspan="6">No tickets found.</td>
+                                    <td colspan="6">No tickets check</td>
                                 </tr>
                             </tbody>
                         }

@@ -95,20 +95,24 @@ namespace DataAccess.Dao
                 throw new Exception("Data cannot be null");
             }
 
-            if (!StringUtils.CheckPasswordValidate(user.Password))
+            var passwordValidationResult = StringUtils.CheckPasswordValidate(user.Password);
+            if (!passwordValidationResult.IsValid)
             {
-                throw new Exception("Password must conform regex");
+                var errorMessage = string.Join("; ", passwordValidationResult.ErrorMessages);
+                throw new Exception($"Password does not meet the requirements: {errorMessage}");
             }
+
             using var dbcontext = new CinemaSystemContext();
             if (dbcontext.Users.SingleOrDefault(e => e.Email == user.Email) != null)
             {
-                throw new Exception("Email already exits!!");
+                throw new Exception("Email already exists!!");
             }
+
             user.Password = Crypto.SHA256(user.Password);
             dbcontext.Users.Add(user);
             dbcontext.SaveChanges();
-
         }
+
 
         private void checkPassword(string newPassword, string confirmPassword, string oldPassword)
         {
@@ -116,16 +120,16 @@ namespace DataAccess.Dao
             {
                 throw new Exception("New password and current password are the same");
             }
-            if (!StringUtils.CheckPasswordValidate(newPassword))
+            var passwordValidationResult = StringUtils.CheckPasswordValidate(newPassword);
+            if (!passwordValidationResult.IsValid)
             {
-                throw new Exception("Password must conform regex");
+                var errorMessage = string.Join("; ", passwordValidationResult.ErrorMessages);
+                throw new ArgumentException($"Password does not meet the requirements: {errorMessage}");
             }
             if (newPassword != confirmPassword)
             {
                 throw new Exception("Password and confirm-password are not the same");
-
             }
-
         }
     }
 }

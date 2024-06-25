@@ -1,18 +1,38 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    margin-top: 20px;
+    list-style: none;
+}
+
+    .pagination .page-item.active .page-link {
+        background-color: white;
+        color: black;
+        border-color: #007bff;
+    }
+
+    .pagination .page-item .page-link.active-page {
+        background-color: white;
+        color: black;
+        border-color: #007bff;
+    }

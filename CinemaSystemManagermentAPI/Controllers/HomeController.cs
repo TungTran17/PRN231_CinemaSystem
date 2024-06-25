@@ -1,4 +1,5 @@
 ﻿using BussinessObject.Models;
+using DataAccess.OData;
 using DataAccess.Repositories;
 using DataAccess.Repositories.impl;
 using DataAccess.Utils;
@@ -16,17 +17,29 @@ namespace CinemaSystemManagermentAPI.Controllers
 
         [EnableQuery]
         [HttpGet("films")]
-        public ActionResult<List<Film>> Get()
+        public ActionResult<OdataResponsePage<Film>> Get([FromQuery] int page = 1, [FromQuery] int pageSize = 12)
         {
-            return _filmRepository.GetFilms();
+            var films = _filmRepository.GetFilms();
+            var paginatedFilms = films.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            return new OdataResponsePage<Film>
+            {
+                Value = paginatedFilms,
+                Count = films.Count
+            };
         }
 
         [EnableQuery]
         [HttpGet("search")]
-        public ActionResult<List<Film>> Search([FromQuery] string q)
+        public ActionResult<OdataResponsePage<Film>> Search([FromQuery] string q, [FromQuery] int page = 1, [FromQuery] int pageSize = 12)
         {
             q = q?.ToLower() ?? "";
-            return _filmRepository.SearchFilm(q);
+            var searchResults = _filmRepository.SearchFilm(q);
+            var paginatedResults = searchResults.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            return new OdataResponsePage<Film>
+            {
+                Value = paginatedResults,
+                Count = searchResults.Count
+            };
         }
 
         [HttpPost("signin")]
@@ -42,7 +55,7 @@ namespace CinemaSystemManagermentAPI.Controllers
         }
 
         [HttpPost("signup")]
-        public ActionResult Signup([FromForm] string email, [FromForm] string password, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse)
+        public ActionResult Signup([FromForm]string displayName, [FromForm] string email, [FromForm] string password, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse)
         {
             if (!GRecaptcha.Verify(gRecaptchaResponse))
             {
@@ -52,7 +65,7 @@ namespace CinemaSystemManagermentAPI.Controllers
             {
                 Email = email,
                 Password = password,
-                Name = email,
+                Name = displayName,
                 Role = (int)BussinessObject.Models.User.Roles.User,
                 AvatarUrl = "/assets/default.jpg"
             };
@@ -63,11 +76,11 @@ namespace CinemaSystemManagermentAPI.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return BadRequest(ex.Message); 
+                return BadRequest(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(ex.Message); 
+                return BadRequest(ex.Message);
             }
             catch (InvalidOperationException ex)
             {
@@ -75,7 +88,7 @@ namespace CinemaSystemManagermentAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Signup failed: " + ex.Message); // General error message
+                return BadRequest("Signup failed: " + ex.Message);
             }
         }
 

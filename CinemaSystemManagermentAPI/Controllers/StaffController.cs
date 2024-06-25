@@ -111,7 +111,6 @@ namespace CinemaSystemManagermentAPI.Controllers
                         Message = "You don't have permission to do this"
                     };
                 }
-
                 var ticket = _context.Tickets
                             .Include(e => e.User)
                             .Include(e => e.Show)

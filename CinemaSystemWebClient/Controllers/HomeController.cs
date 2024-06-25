@@ -8,24 +8,40 @@ namespace CinemaSystemWebClient.Controllers
     public class HomeController : Controller
     {
         private readonly HttpClient _httpClient;
-
+        private const int PageSize = 12;
         public HomeController(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var films = await _httpClient.GetFromJsonAsync<ODataResponseList<Film>>("https://localhost:7041/odata/Home");
-            ViewBag.Films = films.Value;
-            return View(films.Value);
+            var response = await _httpClient.GetFromJsonAsync<OdataResponsePage<Film>>($"https://localhost:7041/odata/Home?page={page}&pageSize={PageSize}");
+            var films = response.Value;
+
+            int totalCount = response.Count;
+            int totalPages = (int)Math.Ceiling((double)totalCount / PageSize);
+
+            ViewBag.Films = films;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View();
         }
 
-        public async Task<IActionResult> Search(string q)
+        public async Task<IActionResult> Search(string q, int page = 1)
         {
-            var searchResults = await _httpClient.GetFromJsonAsync<List<Film>>($"https://localhost:7041/api/Home/search?q={q}");
+            var response = await _httpClient.GetFromJsonAsync<OdataResponsePage<Film>>($"https://localhost:7041/api/Home/search?q={q}&page={page}&pageSize={PageSize}");
+            var searchResults = response.Value;
+
+            int totalCount = response.Count;
+            int totalPages = (int)Math.Ceiling((double)totalCount / PageSize);
+
             ViewBag.Films = searchResults;
-            return View(searchResults);
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View("Index");
         }
 
         [HttpGet]
@@ -70,7 +86,7 @@ namespace CinemaSystemWebClient.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Signup(string email, string password, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse)
+        public async Task<IActionResult> Signup(string displayName, string email, string password, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse)
         {
             // Kiểm tra thời gian chờ: Đảm bảo rằng yêu cầu được gửi trong khoảng thời gian quy định
             if (Request.Form.Keys.Any(k => k.Equals("g-recaptcha-response")) && !Request.Form["g-recaptcha-response"].Equals(gRecaptchaResponse))
@@ -91,6 +107,7 @@ namespace CinemaSystemWebClient.Controllers
             // Tạo form data để gửi lên server
             var formData = new Dictionary<string, string>
             {
+                { "displayName", displayName },
                 { "email", email },
                 { "password", password },
                 { "g-recaptcha-response", gRecaptchaResponse } // Chú ý tên của Recaptcha parameter
