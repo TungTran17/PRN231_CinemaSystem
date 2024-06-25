@@ -99,13 +99,13 @@ namespace DataAccess.Dao
             if (!passwordValidationResult.IsValid)
             {
                 var errorMessage = string.Join("; ", passwordValidationResult.ErrorMessages);
-                throw new Exception($"Password does not meet the requirements: {errorMessage}");
+                throw new Exception($"{errorMessage}");
             }
 
             using var dbcontext = new CinemaSystemContext();
             if (dbcontext.Users.SingleOrDefault(e => e.Email == user.Email) != null)
             {
-                throw new Exception("Email already exists!!");
+                throw new Exception("Email already exists!");
             }
 
             user.Password = Crypto.SHA256(user.Password);
@@ -124,7 +124,7 @@ namespace DataAccess.Dao
             if (!passwordValidationResult.IsValid)
             {
                 var errorMessage = string.Join("; ", passwordValidationResult.ErrorMessages);
-                throw new ArgumentException($"Password does not meet the requirements: {errorMessage}");
+                throw new ArgumentException($"{errorMessage}");
             }
             if (newPassword != confirmPassword)
             {
