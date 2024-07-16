@@ -1,0 +1,95 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CinemaSystemWebClient
+build_property.RootNamespace = CinemaSystemWebClient
+build_property.ProjectDir = D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\FPTU\SU24\PRN231\PRN231_CinemaSystem\CinemaSystemWebClient
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Film/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Home/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Home/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Home/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Home/Signin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Home/Signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWdudXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Show/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvd1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Show/Signin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvd1xTaWduaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Staff/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/User/Setting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTZXR0aW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/User/Signin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTaWduaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/User/Tickets.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxUaWNrZXRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPTU/SU24/PRN231/PRN231_CinemaSystem/CinemaSystemWebClient/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-j3iq9m402m

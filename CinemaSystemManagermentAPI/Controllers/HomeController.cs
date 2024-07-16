@@ -92,7 +92,6 @@ namespace CinemaSystemManagermentAPI.Controllers
             }
         }
 
-
         [HttpPost("forgot-password")]
         public ActionResult ForgotPassword([FromForm] string email, [FromForm(Name = "g-recaptcha-response")] string gRecaptchaResponse, [FromForm(Name = "client-host")] string clientHost)
         {
@@ -110,7 +109,8 @@ namespace CinemaSystemManagermentAPI.Controllers
                 return BadRequest("Token creation failed.");
             }
             var resetPasswordUrl = $"{Request.Scheme}://{clientHost}/Home/ResetPassword?token={token}";
-            SMTP.Instance.Send("Reset Password", $"Here is your reset password link: {resetPasswordUrl}", email);
+            string emailBody = $"<a href=\"{resetPasswordUrl}\">Click here to reset your password</a>";
+            SMTP.Instance.Send("Reset Password", emailBody, email);
             return Ok();
         }
 
